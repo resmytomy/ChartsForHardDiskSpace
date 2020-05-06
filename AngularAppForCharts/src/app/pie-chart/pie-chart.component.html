@@ -1,0 +1,11 @@
+
+<div *ngFor="let content of data ">
+  <google-chart #chart
+  [title]=content.title
+  [type]=content.type
+  [data]=content.data
+  [options]=content.options
+  [width]=content.width
+  [height]=content.height>
+</google-chart>
+</div>
