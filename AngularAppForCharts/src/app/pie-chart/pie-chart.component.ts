@@ -14,7 +14,9 @@ export class PieChartComponent implements OnInit {
   width = 550;
   height = 400;
    data: ChartData[]=[];
+   dataForBarChart:ChartData[]=[];
    type='PieChart';
+   typeBar='BarChart';
    columnNames=["Name","value"];
    
    errorMessage:string;
@@ -35,15 +37,6 @@ export class PieChartComponent implements OnInit {
           var t='['+response+']';
           response.forEach(element => {
 
-           var data = [
-              ['Firefox', 45.0],
-              ['IE', 26.8],
-              ['Chrome', 12.8],
-              ['Safari', 8.5],
-              ['Opera', 6.2],
-              ['Others', 0.7] 
-           ];
-
             var map =([["Blocks",element._blocks],
             ["Used",element._used],
             ["Available",element._available]])
@@ -51,8 +44,11 @@ export class PieChartComponent implements OnInit {
          //   var googleChartData = google.visualization.arrayToDataTable($.parseJSON(map));
             console.log(element._mounted);
             const chartData:ChartData={title :element._mounted,data:map ,type:this.type ,options:this.options,width:this.width,height:this.height,columnNames:this.columnNames}
+            const chartDataforBAr:ChartData={title :element._mounted,data:map ,type:this.typeBar ,options:this.options,width:this.width,height:this.height,columnNames:this.columnNames}
+            this.dataForBarChart.push(chartDataforBAr);
             this.data.push(chartData);
             console.log(this.data);
+            console.log(this.dataForBarChart);
             
           });
           
